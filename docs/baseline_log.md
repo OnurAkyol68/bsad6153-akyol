@@ -1,7 +1,7 @@
 # Baseline Log (Week 1)
 
-**My decision:** <!-- what you decide, in one line -->
-**How often I make it:** <!-- e.g., twice a week -->
+**My decision:** Which Bundesliga players to line up, buy, and sell in my Kickbase team before each matchday.
+**How often I make it:** Several times a week: lineup before every Bundesliga matchday, plus transfer market checks during the week.
 
 Log each decision **while it happens**. Time yourself with a timer; don't estimate afterward.
 Mark any entry you had to reconstruct from memory as *(reconstructed)*.
