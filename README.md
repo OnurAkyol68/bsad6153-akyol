@@ -105,8 +105,9 @@ covers the Bundesliga). The official Kickbase API is not public and needs my per
 
 **My decision and workflow.** Before each Bundesliga matchday I decide which players to line up in my Kickbase
 team, and during the week which players to buy or sell.
-<!-- Onur: describe in 2-3 sentences how you make this decision today, using your baseline log:
-     what you look at, how long it takes, and what you wish you knew. -->
+Today I make this decision mainly with Ligainsider and the Kickbase app. One lineup decision takes me about
+12&ndash;13 minutes. The hardest part is knowing whether the predicted lineups are really correct, and how
+the players are doing mentally, because a player who does not start or is out of form earns me no points.
 My system should bring the information I need into one place, so I decide faster and with more confidence.
 
 **Agent idea (first draft).** Before each matchday, an agent checks the upcoming fixtures, each team's recent
