@@ -96,13 +96,45 @@ every command before you approve it, and keep auto-approve off.
 
 ## Project proposal (Week 1)
 
-<!-- About 300 words: data source and backup API, your decision and workflow (from your baseline log),
-     your first agent idea, and risks. See the Week 1 page. -->
+**Data source and backup.** My main source is [OpenLigaDB](https://api.openligadb.de/index.html), a free,
+community-run API for German football. It needs no key and allows 60 requests per minute. I use Bundesliga
+matches (with results and goals), teams, and the league table for the finished 2025/26 season and the running
+2026/27 season. The data is under the ODbL 1.0 license. OpenLigaDB is not on the course menu, so **I ask the
+instructor to approve it**. My backup is [football-data.org](https://www.football-data.org) (free key, also
+covers the Bundesliga). The official Kickbase API is not public and needs my personal login, so I do not use it.
+
+**My decision and workflow.** Before each Bundesliga matchday I decide which players to line up in my Kickbase
+team, and during the week which players to buy or sell.
+<!-- Onur: describe in 2-3 sentences how you make this decision today, using your baseline log:
+     what you look at, how long it takes, and what you wish you knew. -->
+My system should bring the information I need into one place, so I decide faster and with more confidence.
+
+**Agent idea (first draft).** Before each matchday, an agent checks the upcoming fixtures, each team's recent
+results, and which players have been scoring. It then proposes a lineup and a short list of players to buy
+or sell, with a reason for each. I review the proposal and make the final change in Kickbase myself; the agent
+never acts in my Kickbase account.
+
+**Risks.**
+- *Rate limits:* 60 requests per minute. My script waits 1.2 seconds between requests and backs off on 429.
+- *Access:* OpenLigaDB is run privately by volunteers and could be slow or go offline; then I switch to the backup.
+- *Data quality:* some goals have no scorer or minute, and Kickbase points and market values are not in the data.
+- *Data volume:* small (about 70 requests and a few MB per sync), so this is low risk.
+- *Terms of service:* ODbL requires attribution and sharing a changed database under the same license; I credit
+  OpenLigaDB on my website.
 
 ## How to run this project
 
-<!-- Keep this current: how to run the sync, the website, and the evaluations. -->
+From the project folder, with the virtual environment active (`source .venv/bin/activate`):
+
+```
+python ingest/fetch.py                  # fetch seasons 2025 and 2026 into data/raw/ (about 3 minutes)
+python ingest/fetch.py --seasons 2026   # fetch only the running season
+```
+
+The script needs no API key. It prints a summary of requests, records, missing fields, and failures.
+Raw files go to `data/raw/` (not in Git); a small sample is in `data/sample/`.
 
 ## Credits
 
-<!-- Your data API's required attribution, plus any open-source code or samples you used. -->
+Football data from [OpenLigaDB](https://www.openligadb.de), licensed under the
+[Open Database License (ODbL 1.0)](https://opendatacommons.org/licenses/odbl/1-0/).

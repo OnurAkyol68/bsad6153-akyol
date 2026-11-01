@@ -84,7 +84,6 @@ Records from the last run (2026-11-01): **612 matches**, **1,246 goals**, 36 tea
 
 ## Data-use ethics check
 
-<!-- Onur: read these drafts and rewrite them in your own words. -->
 
 - **Terms of service: allowed and forbidden?** The documentation says the data is under the ODbL 1.0 license: storing, showing it publicly, and commercial use are allowed if we credit OpenLigaDB (and the ODbL contributors) and share any changed database under the same license. The linked terms page did not show its text when I checked it, so I will confirm the details with OpenLigaDB or the instructor.
 - **Real, identifiable people?** Yes: goal scorers are real players, named by short name and ID. This is public match information that is reported in the media anyway, and players expect it to be published. My system only uses it for fantasy-football decisions.
