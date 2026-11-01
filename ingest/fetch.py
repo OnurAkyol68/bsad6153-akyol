@@ -2,8 +2,8 @@
 
 Run it from the project folder:
 
-    python ingest/fetch.py                     # seasons 2024 and 2025 (default)
-    python ingest/fetch.py --seasons 2025      # just one season
+    python ingest/fetch.py                     # seasons 2025 and 2026 (default)
+    python ingest/fetch.py --seasons 2026      # just one season
 
 API docs:  https://api.openligadb.de/index.html
 Terms:     https://www.openligadb.de/nutzungsbedingungen
@@ -40,7 +40,7 @@ import requests
 BASE_URL = "https://api.openligadb.de"
 LEAGUE = "bl1"                  # 1. Bundesliga
 MATCHDAYS = range(1, 35)        # 18 teams -> 34 matchdays per season
-DEFAULT_SEASONS = [2024, 2025]  # season 2025 = 2025/26
+DEFAULT_SEASONS = [2025, 2026]  # 2025 = 2025/26 (finished), 2026 = 2026/27 (running)
 
 REQUEST_DELAY = 1.2             # seconds between requests: stays under 60 per minute
 TIMEOUT = 30                    # seconds before we give up waiting for one response
@@ -150,7 +150,7 @@ def fetch_season(season):
 def main():
     parser = argparse.ArgumentParser(description="Fetch Bundesliga data from OpenLigaDB.")
     parser.add_argument("--seasons", type=int, nargs="+", default=DEFAULT_SEASONS,
-                        help="season start years, e.g. 2024 2025")
+                        help="season start years, e.g. 2025 2026")
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)-7s %(message)s",

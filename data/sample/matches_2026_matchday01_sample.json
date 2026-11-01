@@ -1,0 +1,201 @@
+[
+  {
+    "matchID": 83161,
+    "matchDateTime": "2026-08-29T15:30:00",
+    "timeZoneID": null,
+    "leagueId": 4937,
+    "leagueName": "1. Fußball-Bundesliga 2026/2027",
+    "leagueSeason": 2026,
+    "leagueShortcut": "bl1",
+    "matchDateTimeUTC": "2026-08-29T13:30:00Z",
+    "group": {
+      "groupName": "1. Spieltag",
+      "groupOrderID": 1,
+      "groupID": 50633
+    },
+    "team1": {
+      "teamId": 81,
+      "teamName": "1. FSV Mainz 05",
+      "shortName": "Mainz",
+      "teamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg",
+      "teamGroupName": null,
+      "tla": null,
+      "wikidataId": "Q105254"
+    },
+    "team2": {
+      "teamId": 31,
+      "teamName": "SC Paderborn 07",
+      "shortName": "Paderborn",
+      "teamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e3/SC_Paderborn_07_Logo.svg",
+      "teamGroupName": null,
+      "tla": null,
+      "wikidataId": "Q160532"
+    },
+    "lastUpdateDateTime": "2026-08-29T17:25:32.37",
+    "matchIsFinished": true,
+    "matchResults": [
+      {
+        "resultID": 127559,
+        "resultName": "Halbzeit",
+        "pointsTeam1": 0,
+        "pointsTeam2": 0,
+        "resultOrderID": 1,
+        "resultTypeID": 1,
+        "resultTypeKind": "HalfTime",
+        "resultDescription": "Ergebnis nach Ende der ersten Halbzeit"
+      },
+      {
+        "resultID": 127560,
+        "resultName": "Endergebnis",
+        "pointsTeam1": 0,
+        "pointsTeam2": 0,
+        "resultOrderID": 2,
+        "resultTypeID": 2,
+        "resultTypeKind": "After90Minutes",
+        "resultDescription": "Ergebnis nach Ende der offiziellen Spielzeit"
+      }
+    ],
+    "goals": [],
+    "location": null,
+    "numberOfViewers": null
+  },
+  {
+    "matchID": 83156,
+    "matchDateTime": "2026-08-28T20:30:00",
+    "timeZoneID": null,
+    "leagueId": 4937,
+    "leagueName": "1. Fußball-Bundesliga 2026/2027",
+    "leagueSeason": 2026,
+    "leagueShortcut": "bl1",
+    "matchDateTimeUTC": "2026-08-28T18:30:00Z",
+    "group": {
+      "groupName": "1. Spieltag",
+      "groupOrderID": 1,
+      "groupID": 50633
+    },
+    "team1": {
+      "teamId": 40,
+      "teamName": "FC Bayern München",
+      "shortName": "Bayern",
+      "teamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Logo_FC_Bayern_M%C3%BCnchen_%282002%E2%80%932017%29.svg",
+      "teamGroupName": null,
+      "tla": null,
+      "wikidataId": "Q15789"
+    },
+    "team2": {
+      "teamId": 16,
+      "teamName": "VfB Stuttgart",
+      "shortName": "Stuttgart",
+      "teamIconUrl": "https://i.imgur.com/v0tkpNx.png",
+      "teamGroupName": null,
+      "tla": null,
+      "wikidataId": "Q4512"
+    },
+    "lastUpdateDateTime": "2026-09-02T15:36:25.313",
+    "matchIsFinished": true,
+    "matchResults": [
+      {
+        "resultID": 127516,
+        "resultName": "Halbzeit",
+        "pointsTeam1": 1,
+        "pointsTeam2": 0,
+        "resultOrderID": 1,
+        "resultTypeID": 1,
+        "resultTypeKind": "HalfTime",
+        "resultDescription": "Ergebnis nach Ende der ersten Halbzeit"
+      },
+      {
+        "resultID": 127517,
+        "resultName": "Endergebnis",
+        "pointsTeam1": 5,
+        "pointsTeam2": 1,
+        "resultOrderID": 2,
+        "resultTypeID": 2,
+        "resultTypeKind": "After90Minutes",
+        "resultDescription": "Ergebnis nach Ende der offiziellen Spielzeit"
+      }
+    ],
+    "goals": [
+      {
+        "goalID": 146249,
+        "scoreTeam1": 1,
+        "scoreTeam2": 0,
+        "matchMinute": 21,
+        "goalGetterID": 19198,
+        "goalGetterName": "D. Upamecano",
+        "scoringTeamId": 40,
+        "isPenalty": false,
+        "isOwnGoal": false,
+        "isOvertime": false,
+        "comment": null
+      },
+      {
+        "goalID": 146252,
+        "scoreTeam1": 1,
+        "scoreTeam2": 1,
+        "matchMinute": 52,
+        "goalGetterID": 18488,
+        "goalGetterName": "J. Vagnoman",
+        "scoringTeamId": 16,
+        "isPenalty": false,
+        "isOwnGoal": false,
+        "isOvertime": false,
+        "comment": null
+      },
+      {
+        "goalID": 146253,
+        "scoreTeam1": 2,
+        "scoreTeam2": 1,
+        "matchMinute": 55,
+        "goalGetterID": 23135,
+        "goalGetterName": "M. Olise",
+        "scoringTeamId": 40,
+        "isPenalty": false,
+        "isOwnGoal": false,
+        "isOvertime": false,
+        "comment": null
+      },
+      {
+        "goalID": 146254,
+        "scoreTeam1": 3,
+        "scoreTeam2": 1,
+        "matchMinute": 57,
+        "goalGetterID": 18488,
+        "goalGetterName": "J. Vagnoman",
+        "scoringTeamId": 40,
+        "isPenalty": false,
+        "isOwnGoal": true,
+        "isOvertime": false,
+        "comment": null
+      },
+      {
+        "goalID": 146257,
+        "scoreTeam1": 4,
+        "scoreTeam2": 1,
+        "matchMinute": 82,
+        "goalGetterID": 24759,
+        "goalGetterName": "Aleksandar Pavlovic",
+        "scoringTeamId": 40,
+        "isPenalty": false,
+        "isOwnGoal": false,
+        "isOvertime": false,
+        "comment": null
+      },
+      {
+        "goalID": 146259,
+        "scoreTeam1": 5,
+        "scoreTeam2": 1,
+        "matchMinute": 92,
+        "goalGetterID": 18880,
+        "goalGetterName": "Luis Díaz",
+        "scoringTeamId": 40,
+        "isPenalty": false,
+        "isOwnGoal": false,
+        "isOvertime": true,
+        "comment": null
+      }
+    ],
+    "location": null,
+    "numberOfViewers": null
+  }
+]
