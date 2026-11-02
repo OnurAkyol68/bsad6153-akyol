@@ -1,0 +1,29 @@
+[
+  {
+    "teamId": 65,
+    "teamName": "1. FC Köln",
+    "shortName": "Köln",
+    "teamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/0/01/1._FC_Koeln_Logo_2014%E2%80%93.svg",
+    "teamGroupName": null,
+    "tla": null,
+    "wikidataId": "Q104770"
+  },
+  {
+    "teamId": 80,
+    "teamName": "1. FC Union Berlin",
+    "shortName": "Union Berlin",
+    "teamIconUrl": "https://assets.dfb.de/uploads/000/018/232/small_union-Berlin.jpg",
+    "teamGroupName": null,
+    "tla": null,
+    "wikidataId": "Q141971"
+  },
+  {
+    "teamId": 81,
+    "teamName": "1. FSV Mainz 05",
+    "shortName": "Mainz",
+    "teamIconUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Logo_Mainz_05.svg",
+    "teamGroupName": null,
+    "tla": null,
+    "wikidataId": "Q105254"
+  }
+]
