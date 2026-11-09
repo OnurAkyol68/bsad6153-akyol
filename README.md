@@ -133,6 +133,16 @@ python ingest/fetch.py --seasons 2026   # fetch only the running season
 The script needs no API key. It prints a summary of requests, records, missing fields, and failures.
 Raw files go to `data/raw/` (not in Git); a small sample is in `data/sample/`.
 
+To load the raw files into the database (needs `DATABASE_URL` in `.env`, Supabase Session pooler string):
+
+```
+python scripts/check_db.py              # check that the database connection works
+python ingest/load.py --schema          # first time: create the tables from db/schema.sql, then load
+python ingest/load.py                   # later runs: existing rows are skipped, no duplicates
+```
+
+The tables are described in `docs/schema.md`; the business questions are in `db/queries.sql`.
+
 ## Credits
 
 Football data from [OpenLigaDB](https://www.openligadb.de), licensed under the
