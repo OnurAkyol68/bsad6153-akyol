@@ -4,8 +4,8 @@
 -- "What I wished I knew". Season 2026 = the running season 2026/27.
 --
 -- Requirements covered:
---   JOINs:          Q1, Q2, Q3, Q4
---   GROUP BY:       Q1, Q2, Q5
+--   JOINs:          Q1, Q2, Q3, Q4, Q5
+--   GROUP BY:       Q1, Q2, Q6
 --   filter by time: Q1, Q2 (last 30 days)
 --   surprise:       Q5
 
@@ -94,9 +94,28 @@ where m.season = 2026
 order by p.short_name, m.matchday;
 
 
--- Question 5 (surprise): In which part of the match are most goals scored?
--- Goals per 15-minute block, both seasons. Goals without a minute are counted separately.
--- Why it surprised me: <Onur: write this after you run the query>
+-- Question 5 (surprise, log: "How strong the opponent is"):
+-- Which teams are at the bottom of the current table, and how far behind the leader are they?
+-- Why it surprised me: Gladbach is last, although in recent years they were always
+-- consistently in the top 10 of the Bundesliga.
+select s.position,
+       t.short_name                          as team,
+       s.matches_played,
+       s.won, s.draw, s.lost,
+       s.goals_for || ':' || s.goals_against as goals,
+       s.points,
+       lead.points - s.points                as points_behind_leader
+from standings s
+join teams t        on t.team_id = s.team_id
+join standings lead on lead.season = s.season and lead.position = 1
+where s.season = 2026
+order by s.position desc
+limit 6;
+
+
+-- Question 6 (log: "How good the players' current form is"):
+-- In which part of the match are most goals scored? Goals per 15-minute block, both seasons.
+-- Result: most goals fall in minutes 76-90. Not a surprise for me: players get tired at the end.
 select case
          when minute is null then 'unknown'
          when minute <= 15 then '01-15'
