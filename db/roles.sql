@@ -8,12 +8,21 @@
 --
 -- Then put the role's connection string in .env as APP_DATABASE_URL.
 --
--- Week 2: a read-only role for the website, chatbot, and golden-question checker.
--- create role app_reader login;
--- grant usage on schema public to app_reader;
--- grant select on <your data tables> to app_reader;
---
--- Week 3: add sync_runs to the grant above when you create it.
+-- Week 2/3: a read-only role for the website, chatbot, and golden-question checker.
+-- Run this file in the Supabase SQL editor as postgres. Safe to run again.
+do $$
+begin
+    if not exists (select 1 from pg_roles where rolname = 'app_reader') then
+        create role app_reader login;
+    end if;
+end $$;
+
+grant usage on schema public to app_reader;
+grant select on teams, team_seasons, players, matches, goals, standings to app_reader;
+grant select on sync_runs to app_reader;   -- Week 3: read the sync history, never write it
+
+-- Nothing else: no insert, update, delete, truncate, and no create in the schema.
+revoke create on schema public from app_reader;
 --
 -- Week 6: the agent's own role (see the Week 6 page for the exact grants).
 -- create role agent_writer login;
