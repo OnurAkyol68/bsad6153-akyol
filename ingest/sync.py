@@ -320,7 +320,10 @@ def main():
           f"updated {counter.updated}, deleted {counter.deleted}")
     for table, (ins, upd) in sorted(counter.per_table.items()):
         print(f"    {table:<13} +{ins} inserted, {upd} updated")
-    print(f"  matchdays synced: {'; '.join(synced) or 'none (nothing changed at the source)'}")
+    if status == "failed":
+        print("  matchdays synced: none committed (the transaction was rolled back)")
+    else:
+        print(f"  matchdays synced: {'; '.join(synced) or 'none (nothing changed at the source)'}")
     if error_message:
         print(f"  error: {error_message}")
     # partial and failed both exit 1, so GitHub shows a red X and sends an email.
