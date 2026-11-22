@@ -14,7 +14,7 @@
 --   * Audit columns first_seen_at and last_updated_at on every table.
 --
 -- Running this file again is safe: tables are only created if they are missing.
--- Week 3 adds sync_runs. Week 6 adds agent_runs and agent_proposals.
+-- Week 3 adds sync_runs (bottom of this file). Week 6 adds agent_runs and agent_proposals.
 
 -- One club. A club keeps the same OpenLigaDB team ID across seasons.
 create table if not exists teams (
@@ -116,7 +116,39 @@ create table if not exists standings (
     first_seen_at    timestamptz not null default now(),
     last_updated_at  timestamptz not null default now(),
     unique (team_id, season),
-    unique (season, position),
+    -- Deferred: when two clubs swap places, the sync updates one row at a time, so the
+    -- positions are only unique again at the end of the transaction (Week 3).
+    unique (season, position) deferrable initially deferred,
     check (won + draw + lost = matches_played),
     check (points = 3 * won + draw)   -- Bundesliga: 3 points for a win, 1 for a draw
 );
+
+-- Week 3 migration: databases created in Week 2 have a non-deferrable unique (season, position).
+-- Replace it once with the deferred version above. Safe to run again.
+do $$
+begin
+    if exists (select 1 from pg_constraint
+               where conname = 'standings_season_position_key' and not condeferrable) then
+        alter table standings drop constraint standings_season_position_key;
+        alter table standings add constraint standings_season_position_key
+            unique (season, position) deferrable initially deferred;
+    end if;
+end $$;
+
+-- Week 3: one row per run of ingest/sync.py, written even when the run fails.
+create table if not exists sync_runs (
+    run_id            integer generated always as identity primary key,
+    started_at        timestamptz not null,
+    finished_at       timestamptz not null,
+    status            text not null check (status in ('success', 'partial', 'failed')),
+    trigger           text not null check (trigger in ('schedule', 'manual')),
+    records_fetched   integer not null default 0 check (records_fetched >= 0),   -- matches + table rows read from the API
+    records_inserted  integer not null default 0 check (records_inserted >= 0),  -- new rows, all tables
+    records_updated   integer not null default 0 check (records_updated >= 0),   -- rows whose values really changed
+    records_deleted   integer not null default 0 check (records_deleted >= 0),   -- goals removed at the source
+    matchdays_synced  text,            -- e.g. '2026: 10, 12' (which matchdays were refetched)
+    error_message     text,            -- short error text, never a connection string or key
+    check (finished_at >= started_at)
+);
+
+create index if not exists sync_runs_started_idx on sync_runs (started_at desc);

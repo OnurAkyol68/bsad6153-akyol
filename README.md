@@ -143,6 +143,26 @@ python ingest/load.py                   # later runs: existing rows are skipped,
 
 The tables are described in `docs/schema.md`; the business questions are in `db/queries.sql`.
 
+### Keeping the data current (Week 3)
+
+```
+python ingest/sync.py                   # fetch only changed matchdays, upsert, write one sync_runs row
+python ingest/sync.py --full            # ignore the watermark and refetch every matchday
+python scripts/status.py                # last successful sync and what changed in the last 7 days
+```
+
+`ingest/sync.py` replaces running `fetch.py` + `load.py` by hand. It asks OpenLigaDB when each matchday
+last changed (`/getlastchangedate`) and downloads only matchdays that are newer than what the database
+already holds (the watermark is `matches.source_updated_at`). Rows are upserted, so changed results are
+updated and unchanged rows are not touched. Every run writes a row to `sync_runs`.
+
+**Schedule:** `.github/workflows/sync.yml` runs the sync **every 6 hours** (at minute 17 UTC) and can be
+started by hand (Actions > Sync OpenLigaDB > Run workflow). Why every 6 hours: Bundesliga matches are played
+Friday to Sunday and OpenLigaDB updates results within hours, so 6 hours keeps my data at most about half a
+day behind, which is enough for lineup decisions before the next matchday. A run sends about 36 requests,
+far below OpenLigaDB's limit of 60 per minute, and 4 runs a day is the kind of sparing use its terms ask for.
+`DATABASE_URL` reaches the job as a GitHub Actions secret; OpenLigaDB needs no API key.
+
 ## Credits
 
 Football data from [OpenLigaDB](https://www.openligadb.de), licensed under the
