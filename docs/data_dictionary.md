@@ -89,3 +89,54 @@ Records from the last run (2026-11-01): **612 matches**, **1,246 goals**, 36 tea
 - **Real, identifiable people?** Yes: goal scorers are real players, named by short name and ID. This is public match information that is reported in the media anyway, and players expect it to be published. My system only uses it for fantasy-football decisions.
 - **Worst realistic harm if leaked or misread?** A leak would reveal nothing private, because the data is already public. The bigger risk is misreading: a wrong or missing scorer could make me sell or bench the wrong player in Kickbase, which costs me points or virtual money.
 - **Who may read or change the records?** Anyone may read them on the public website (with attribution). Only the sync pipeline may write or change them; the website, chatbot, and agent get read-only access.
+
+## Lineage and freshness (Week 3)
+
+How one record travels from OpenLigaDB into my tables. Everything runs in `ingest/sync.py`, started every
+6 hours by `.github/workflows/sync.yml`.
+
+```
+GitHub Actions (cron 17 */6 * * *, or "Run workflow")
+  -> ingest/sync.py, connects as postgres with DATABASE_URL (Actions secret)
+     1. /getlastchangedate/bl1/2026/{1..34}   when did each matchday last change?
+        compare with max(matches.source_updated_at) for that matchday (the watermark)
+     2. /getmatchdata/bl1/2026/{matchday}     only for matchdays that changed
+        team1 / team2                 -> teams (upsert on team_id), team_seasons (insert if new)
+        goals[].goalGetterID / Name   -> players (upsert on player_id; ID 0 or empty name = no player)
+        match                         -> matches (upsert on match_id)
+             matchDateTimeUTC        -> kickoff_at (UTC)
+             lastUpdateDateTime      -> source_updated_at (German time -> timestamptz)
+             matchResults by resultTypeID 1 / 2 -> half-time / final score
+             whole JSON              -> raw (jsonb)
+        goals[]                       -> goals (upsert on goal_id); goals no longer in the source are deleted
+     3. /getbltable/bl1/2026          -> standings (upsert on team_id + season; list order = position)
+     4. one transaction: all of the above is committed together, or nothing
+     5. sync_runs: one row per run (status, counts, error), in its own transaction
+  -> app_reader (read only) -> golden-question checker now, website and chatbot later
+```
+
+Upsert rule for every table: `insert ... on conflict (natural id) do update set ... where (old values) is
+distinct from (new values)`. An unchanged row is not touched, so `last_updated_at` only moves when a value
+really changed, and `first_seen_at` never changes after the first insert.
+
+**Freshness guarantee.** Normally my data is at most **about 6 hours** behind OpenLigaDB (one schedule
+interval) plus the time OpenLigaDB itself needs to enter a result (usually minutes after the final whistle).
+Worst case, if GitHub delays a scheduled run or one run fails, it is **about 12 hours** behind; after that a
+failure is visible as a red ✗ and an email. If the schedule stops completely (for example GitHub disables
+scheduled workflows after 60 days without repository activity, or the Supabase project is paused), the data
+gets older without limit, which is why `scripts/status.py` prints the age of the last successful sync and warns
+when it is more than 24 hours. The chatbot (Milestone 5) will use the same check to warn users.
+
+**Ownership.** In a company, the data engineer who owns this pipeline (here: me, Onur) is responsible for the
+sync code, the schedule and the secrets, and gets the failure email from GitHub Actions. The person who uses the
+answers (the Kickbase manager, also me) should be told when data is stale, through the freshness warning in the
+app and chatbot. OpenLigaDB is a community project without a service guarantee, so problems at the source can
+only be reported to its maintainers, not fixed by us.
+
+## Change log
+
+- **Week 1 (2026-11-01):** first fetch of seasons 2025 and 2026.
+- **Week 2 (2026-11-10):** loaded into PostgreSQL; 5 placeholder goals kept (see `docs/schema.md`).
+- **Week 3 (2026-11-22):** finished matches still change days after they are played (one match of matchday 9
+  was updated on 10 Nov), and future matches change when kickoff times are fixed (17 matches of matchdays 11–12
+  on 20 Nov). 5 scorers appear under two different IDs. Details in `docs/data_quality.md`, section 8.
