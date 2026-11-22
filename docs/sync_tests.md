@@ -105,9 +105,48 @@ Q19  ok     1 rows   finished_matches=90, pct_home_wins=50.0, pct_draws=21.1, pc
 14 of 14 reference queries OK; saved to evals/reference_runs/2026-11-22_2145.json
 ```
 
-**Second run, after at least two more scheduled syncs:** _to do_ (run with `--compare`, paste output, list
-which answers changed).
+**Second run (2026-11-22, 21:51 UTC, after sync run 9).** Honest limitation: the assignment asks for this
+run after at least two more *scheduled* syncs. My schedule only started today at 21:40 UTC (PR 1 was merged
+on the deadline day), so the first scheduled run is at about 00:17 UTC on 23 Nov. Between the baseline and this
+run there were only manual syncs (the GitHub Actions run 8 and the local run 9), and neither found new data.
 
-Expected changes: Q15 (age of the last sync) changes on every run. The first time a new matchday is played
-(matchday 11 on 27–29 Nov), Q01, Q02, Q03, Q05, Q07, Q09, Q12 and Q19 should change too. If they don't, the
-sync is not bringing in new data.
+```
+$ python evals/check_reference.py --compare
+Connected as app_reader, 2026-11-22 21:51 UTC
+
+Q01  ok    15 rows  same   player=Romulo, team=Leipzig, goals=5, penalties=0
+Q02  ok    18 rows  same   team=Leipzig, played=4, points=12, goals_for=16, goals_against=3
+Q03  ok     9 rows  same   matchday=11, kickoff_german_time=2026-11-27 20:30:00, home_team=Bremen, home_position=6, h
+Q04  ok    18 rows  same   player=A. Caci, matchday=5, match=Mainz - Leverkusen, minute=42, is_penalty=False
+Q05  ok     6 rows  same   position=18, team=Gladbach, matches_played=10, won=1, draw=1, lost=8, goals=12:26, points=
+Q06  ok     8 rows  same   minute_block=01-15, goals=153, percent_of_all_goals=11.8
+Q07  ok     1 rows  same   matchday=11, kickoff_german_time=2026-11-27 20:30:00, home_team=Bremen, away_team=Gladbach
+Q08  ok     2 rows  same   season=2025, goals=13, matches_with_goal=9
+Q09  ok     5 rows  same   matchday=10, match=Bayern - Köln, bayern_goals=1
+Q10  skip  (should_decline: no reference SQL)
+Q11  skip  (should_decline: no reference SQL)
+Q12  ok     5 rows  same   position=1, team=Dortmund, matches_played=10, points=24, goals=17:7
+Q13  ok     3 rows  same   season=2025, matchday=7, match=Bayern - Dortmund, result=2:1
+Q14  ok     7 rows  same   player=N. Füllkrug, team=Bremen, penalties=3
+Q15  ok     1 rows  CHANGED   last_successful_sync=2026-11-22 21:51:50.168695+00:00, age=0:00:02.459886
+Q16  skip  (should_decline: no reference SQL)
+Q17  skip  (should_decline: no reference SQL)
+Q18  skip  (should_decline: no reference SQL)
+Q19  ok     1 rows  same   finished_matches=90, pct_home_wins=50.0, pct_draws=21.1, pct_away_wins=28.9
+
+14 of 14 reference queries OK; saved to evals/reference_runs/2026-11-22_2151.json
+Compared with run of 2026-11-22T21:45 UTC: 1 answers changed (Q15)
+```
+
+**Which answers changed:** only **Q15** (age of the last sync), which changes on every run by design. All 14
+reference queries still run as `app_reader` and return rows.
+
+**Why the others didn't change:** no match was played between the two checks. Matchday 10 ended today at 18:30
+UTC and was already synced in run 1; matchday 11 starts on 27 Nov. So identical answers are what a correct sync
+should produce here, not a sign that it is stuck. The sync does bring in new data when the source changes:
+run 1 (before the baseline) took the database from 1,276 to 1,299 goals and updated all 18 table rows after
+matchday 10, which changed the answers to Q01, Q02, Q05, Q09, Q12 and Q19 compared with the Milestone 2 data
+(for example Q19 went from 81 to 90 finished matches of 2026/27).
+
+**Follow-up:** after matchday 11 (27–29 Nov) I will run `python evals/check_reference.py --compare` again;
+then Q01, Q02, Q03, Q05, Q07, Q09, Q12 and Q19 must change.

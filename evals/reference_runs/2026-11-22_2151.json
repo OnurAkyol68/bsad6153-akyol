@@ -1,0 +1,885 @@
+{
+  "run_at": "2026-11-22T21:51:50.602464+00:00",
+  "user": "app_reader",
+  "results": {
+    "Q01": {
+      "question": "Who's scored the most goals in the last 30 days?",
+      "columns": [
+        "player",
+        "team",
+        "goals",
+        "penalties"
+      ],
+      "rows": [
+        [
+          "Romulo",
+          "Leipzig",
+          5,
+          0
+        ],
+        [
+          "N. Füllkrug",
+          "Bremen",
+          4,
+          2
+        ],
+        [
+          "F. Nmecha",
+          "Dortmund",
+          3,
+          0
+        ],
+        [
+          "J. Burkardt",
+          "Frankfurt",
+          3,
+          0
+        ],
+        [
+          "M. Gregoritsch",
+          "Augsburg",
+          3,
+          0
+        ],
+        [
+          "P. Schick",
+          "Leverkusen",
+          3,
+          0
+        ],
+        [
+          "A. Moreira",
+          "Leverkusen",
+          2,
+          0
+        ],
+        [
+          "A. Nusa",
+          "Leipzig",
+          2,
+          2
+        ],
+        [
+          "C. Baumgartner",
+          "Leipzig",
+          2,
+          0
+        ],
+        [
+          "D. Upamecano",
+          "Bayern",
+          2,
+          0
+        ],
+        [
+          "E. Demirovic",
+          "Stuttgart",
+          2,
+          0
+        ],
+        [
+          "I. Matanovic",
+          "Freiburg",
+          2,
+          0
+        ],
+        [
+          "J. Haberer",
+          "Union Berlin",
+          2,
+          0
+        ],
+        [
+          "J. Njinmah",
+          "Bremen",
+          2,
+          0
+        ],
+        [
+          "A. Caci",
+          "Mainz",
+          1,
+          0
+        ]
+      ],
+      "row_count": 15,
+      "fingerprint": "17157557bb8f"
+    },
+    "Q02": {
+      "question": "Which teams are in the best form right now?",
+      "columns": [
+        "team",
+        "played",
+        "points",
+        "goals_for",
+        "goals_against"
+      ],
+      "rows": [
+        [
+          "Leipzig",
+          4,
+          12,
+          16,
+          3
+        ],
+        [
+          "Dortmund",
+          4,
+          10,
+          6,
+          3
+        ],
+        [
+          "Bremen",
+          4,
+          9,
+          9,
+          3
+        ],
+        [
+          "Freiburg",
+          4,
+          9,
+          6,
+          4
+        ],
+        [
+          "Bayern",
+          4,
+          8,
+          8,
+          5
+        ],
+        [
+          "Stuttgart",
+          3,
+          7,
+          5,
+          2
+        ],
+        [
+          "Frankfurt",
+          4,
+          7,
+          6,
+          4
+        ],
+        [
+          "Hoffenheim",
+          4,
+          6,
+          5,
+          4
+        ],
+        [
+          "Leverkusen",
+          4,
+          6,
+          8,
+          8
+        ],
+        [
+          "Paderborn",
+          4,
+          5,
+          3,
+          6
+        ],
+        [
+          "Augsburg",
+          4,
+          4,
+          7,
+          9
+        ],
+        [
+          "Köln",
+          4,
+          3,
+          3,
+          4
+        ],
+        [
+          "Elversberg",
+          4,
+          3,
+          5,
+          8
+        ],
+        [
+          "HSV",
+          4,
+          3,
+          4,
+          9
+        ],
+        [
+          "S04",
+          4,
+          2,
+          1,
+          4
+        ],
+        [
+          "Union Berlin",
+          4,
+          2,
+          3,
+          9
+        ],
+        [
+          "Gladbach",
+          3,
+          1,
+          1,
+          4
+        ],
+        [
+          "Mainz",
+          4,
+          0,
+          5,
+          12
+        ]
+      ],
+      "row_count": 18,
+      "fingerprint": "b358b2c3590c"
+    },
+    "Q03": {
+      "question": "How strong are the opponents on the next matchday?",
+      "columns": [
+        "matchday",
+        "kickoff_german_time",
+        "home_team",
+        "home_position",
+        "home_points",
+        "away_team",
+        "away_position",
+        "away_points",
+        "position_gap"
+      ],
+      "rows": [
+        [
+          11,
+          "2026-11-27 20:30:00",
+          "Bremen",
+          6,
+          18,
+          "Gladbach",
+          18,
+          4,
+          12
+        ],
+        [
+          11,
+          "2026-11-28 15:30:00",
+          "Mainz",
+          13,
+          10,
+          "Union Berlin",
+          17,
+          7,
+          4
+        ],
+        [
+          11,
+          "2026-11-28 15:30:00",
+          "Köln",
+          14,
+          10,
+          "Elversberg",
+          9,
+          13,
+          -5
+        ],
+        [
+          11,
+          "2026-11-28 15:30:00",
+          "Paderborn",
+          15,
+          10,
+          "S04",
+          16,
+          7,
+          1
+        ],
+        [
+          11,
+          "2026-11-28 15:30:00",
+          "HSV",
+          12,
+          12,
+          "Bayern",
+          2,
+          22,
+          -10
+        ],
+        [
+          11,
+          "2026-11-28 18:30:00",
+          "Stuttgart",
+          8,
+          13,
+          "Frankfurt",
+          7,
+          15,
+          -1
+        ],
+        [
+          11,
+          "2026-11-29 15:30:00",
+          "Freiburg",
+          3,
+          22,
+          "Leipzig",
+          4,
+          21,
+          1
+        ],
+        [
+          11,
+          "2026-11-29 17:30:00",
+          "Hoffenheim",
+          11,
+          12,
+          "Augsburg",
+          10,
+          12,
+          -1
+        ],
+        [
+          11,
+          "2026-11-29 19:30:00",
+          "Dortmund",
+          1,
+          24,
+          "Leverkusen",
+          5,
+          19,
+          4
+        ]
+      ],
+      "row_count": 9,
+      "fingerprint": "f26b873b7782"
+    },
+    "Q04": {
+      "question": "Have Upamecano, Burkardt, Nmecha, Caci, Mwene, Khedira or Poreba scored this season?",
+      "columns": [
+        "player",
+        "matchday",
+        "match",
+        "minute",
+        "is_penalty"
+      ],
+      "rows": [
+        [
+          "A. Caci",
+          5,
+          "Mainz - Leverkusen",
+          42,
+          false
+        ],
+        [
+          "A. Caci",
+          5,
+          "Mainz - Leverkusen",
+          33,
+          false
+        ],
+        [
+          "A. Caci",
+          7,
+          "Mainz - Bremen",
+          33,
+          false
+        ],
+        [
+          "D. Upamecano",
+          1,
+          "Bayern - Stuttgart",
+          21,
+          false
+        ],
+        [
+          "D. Upamecano",
+          7,
+          "Freiburg - Bayern",
+          16,
+          false
+        ],
+        [
+          "D. Upamecano",
+          8,
+          "Bayern - Dortmund",
+          66,
+          false
+        ],
+        [
+          "F. Nmecha",
+          3,
+          "Dortmund - Paderborn",
+          80,
+          false
+        ],
+        [
+          "F. Nmecha",
+          3,
+          "Dortmund - Paderborn",
+          89,
+          false
+        ],
+        [
+          "F. Nmecha",
+          9,
+          "Dortmund - Elversberg",
+          55,
+          false
+        ],
+        [
+          "F. Nmecha",
+          9,
+          "Dortmund - Elversberg",
+          71,
+          false
+        ],
+        [
+          "F. Nmecha",
+          10,
+          "Gladbach - Dortmund",
+          80,
+          false
+        ],
+        [
+          "J. Burkardt",
+          2,
+          "Frankfurt - Augsburg",
+          6,
+          false
+        ],
+        [
+          "J. Burkardt",
+          3,
+          "Mainz - Frankfurt",
+          46,
+          false
+        ],
+        [
+          "J. Burkardt",
+          4,
+          "Frankfurt - Freiburg",
+          36,
+          false
+        ],
+        [
+          "J. Burkardt",
+          9,
+          "Paderborn - Frankfurt",
+          23,
+          false
+        ],
+        [
+          "J. Burkardt",
+          9,
+          "Paderborn - Frankfurt",
+          93,
+          false
+        ],
+        [
+          "J. Burkardt",
+          10,
+          "Frankfurt - Hoffenheim",
+          25,
+          false
+        ],
+        [
+          "P. Mwene",
+          2,
+          "HSV - Mainz",
+          41,
+          false
+        ]
+      ],
+      "row_count": 18,
+      "fingerprint": "e9b5fd060442"
+    },
+    "Q05": {
+      "question": "Who's at the bottom of the table and how far behind the leader?",
+      "columns": [
+        "position",
+        "team",
+        "matches_played",
+        "won",
+        "draw",
+        "lost",
+        "goals",
+        "points",
+        "points_behind_leader"
+      ],
+      "rows": [
+        [
+          18,
+          "Gladbach",
+          10,
+          1,
+          1,
+          8,
+          "12:26",
+          4,
+          20
+        ],
+        [
+          17,
+          "Union Berlin",
+          10,
+          1,
+          4,
+          5,
+          "8:26",
+          7,
+          17
+        ],
+        [
+          16,
+          "S04",
+          10,
+          1,
+          4,
+          5,
+          "5:11",
+          7,
+          17
+        ],
+        [
+          15,
+          "Paderborn",
+          10,
+          2,
+          4,
+          4,
+          "8:15",
+          10,
+          14
+        ],
+        [
+          14,
+          "Köln",
+          10,
+          2,
+          4,
+          4,
+          "11:15",
+          10,
+          14
+        ],
+        [
+          13,
+          "Mainz",
+          10,
+          3,
+          1,
+          6,
+          "19:22",
+          10,
+          14
+        ]
+      ],
+      "row_count": 6,
+      "fingerprint": "a127e8a3ac30"
+    },
+    "Q06": {
+      "question": "When in a match are most goals scored?",
+      "columns": [
+        "minute_block",
+        "goals",
+        "percent_of_all_goals"
+      ],
+      "rows": [
+        [
+          "01-15",
+          153,
+          "11.8"
+        ],
+        [
+          "16-30",
+          178,
+          "13.7"
+        ],
+        [
+          "31-45",
+          209,
+          "16.1"
+        ],
+        [
+          "46-60",
+          230,
+          "17.7"
+        ],
+        [
+          "61-75",
+          191,
+          "14.7"
+        ],
+        [
+          "76-90",
+          266,
+          "20.5"
+        ],
+        [
+          "90+",
+          68,
+          "5.2"
+        ],
+        [
+          "unknown",
+          4,
+          "0.3"
+        ]
+      ],
+      "row_count": 8,
+      "fingerprint": "4b4585200591"
+    },
+    "Q07": {
+      "question": "Who does Gladbach play next and how good are they?",
+      "columns": [
+        "matchday",
+        "kickoff_german_time",
+        "home_team",
+        "away_team",
+        "opponent_position",
+        "opponent_points"
+      ],
+      "rows": [
+        [
+          11,
+          "2026-11-27 20:30:00",
+          "Bremen",
+          "Gladbach",
+          6,
+          18
+        ]
+      ],
+      "row_count": 1,
+      "fingerprint": "16d7190440e3"
+    },
+    "Q08": {
+      "question": "Is Burkardt scoring more this season than last season?",
+      "columns": [
+        "season",
+        "goals",
+        "matches_with_goal"
+      ],
+      "rows": [
+        [
+          2025,
+          13,
+          9
+        ],
+        [
+          2026,
+          6,
+          5
+        ]
+      ],
+      "row_count": 2,
+      "fingerprint": "c46607d60942"
+    },
+    "Q09": {
+      "question": "How many goals has Bayern scored on each of the last 5 matchdays?",
+      "columns": [
+        "matchday",
+        "match",
+        "bayern_goals"
+      ],
+      "rows": [
+        [
+          10,
+          "Bayern - Köln",
+          1
+        ],
+        [
+          9,
+          "Mainz - Bayern",
+          2
+        ],
+        [
+          8,
+          "Bayern - Dortmund",
+          2
+        ],
+        [
+          7,
+          "Freiburg - Bayern",
+          3
+        ],
+        [
+          6,
+          "Bayern - Leipzig",
+          6
+        ]
+      ],
+      "row_count": 5,
+      "fingerprint": "b0d37f5962f5"
+    },
+    "Q12": {
+      "question": "What does the top of the table look like?",
+      "columns": [
+        "position",
+        "team",
+        "matches_played",
+        "points",
+        "goals"
+      ],
+      "rows": [
+        [
+          1,
+          "Dortmund",
+          10,
+          24,
+          "17:7"
+        ],
+        [
+          2,
+          "Bayern",
+          10,
+          22,
+          "30:10"
+        ],
+        [
+          3,
+          "Freiburg",
+          10,
+          22,
+          "21:10"
+        ],
+        [
+          4,
+          "Leipzig",
+          10,
+          21,
+          "32:14"
+        ],
+        [
+          5,
+          "Leverkusen",
+          10,
+          19,
+          "24:17"
+        ]
+      ],
+      "row_count": 5,
+      "fingerprint": "47fed5b5ced9"
+    },
+    "Q13": {
+      "question": "How did Bayern and Dortmund do against each other in the last two seasons?",
+      "columns": [
+        "season",
+        "matchday",
+        "match",
+        "result"
+      ],
+      "rows": [
+        [
+          2025,
+          7,
+          "Bayern - Dortmund",
+          "2:1"
+        ],
+        [
+          2025,
+          24,
+          "Dortmund - Bayern",
+          "2:3"
+        ],
+        [
+          2026,
+          8,
+          "Bayern - Dortmund",
+          "2:2"
+        ]
+      ],
+      "row_count": 3,
+      "fingerprint": "1f70e2db31bc"
+    },
+    "Q14": {
+      "question": "Who has scored the most penalties this season?",
+      "columns": [
+        "player",
+        "team",
+        "penalties"
+      ],
+      "rows": [
+        [
+          "N. Füllkrug",
+          "Bremen",
+          3
+        ],
+        [
+          "A. Nusa",
+          "Leipzig",
+          2
+        ],
+        [
+          "A. Kramaric",
+          "Hoffenheim",
+          1
+        ],
+        [
+          "H. Kane",
+          "Bayern",
+          1
+        ],
+        [
+          "M. Gregoritsch",
+          "Augsburg",
+          1
+        ],
+        [
+          "M. Pieringer",
+          "Paderborn",
+          1
+        ],
+        [
+          "S. Machino",
+          "Gladbach",
+          1
+        ]
+      ],
+      "row_count": 7,
+      "fingerprint": "301d4504140c"
+    },
+    "Q15": {
+      "question": "How up to date is your data?",
+      "columns": [
+        "last_successful_sync",
+        "age"
+      ],
+      "rows": [
+        [
+          "2026-11-22 21:51:50.168695+00:00",
+          "0:00:02.459886"
+        ]
+      ],
+      "row_count": 1,
+      "fingerprint": "6802683250d8"
+    },
+    "Q19": {
+      "question": "Do home teams win more often this season?",
+      "columns": [
+        "finished_matches",
+        "pct_home_wins",
+        "pct_draws",
+        "pct_away_wins"
+      ],
+      "rows": [
+        [
+          90,
+          "50.0",
+          "21.1",
+          "28.9"
+        ]
+      ],
+      "row_count": 1,
+      "fingerprint": "c02a0123d01d"
+    }
+  }
+}
