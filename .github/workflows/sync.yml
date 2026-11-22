@@ -1,0 +1,41 @@
+# Week 3: run the OpenLigaDB sync automatically.
+#
+# Secrets: DATABASE_URL is stored as a GitHub Actions secret
+# (Settings -> Secrets and variables -> Actions). GitHub injects it into the job as an
+# environment variable at run time and masks it in the logs. It never appears in this file.
+# OpenLigaDB needs no API key, so DATABASE_URL is the only secret.
+
+name: Sync OpenLigaDB
+
+on:
+  schedule:
+    # Every 6 hours (UTC). Bundesliga results arrive Fri-Sun, the source changes a few times
+    # a day at most, and one run sends ~36 requests, far below the 60 per minute limit.
+    - cron: "17 */6 * * *"
+  workflow_dispatch:        # "Run workflow" button for manual runs
+
+concurrency:
+  group: sync               # never run two syncs at the same time
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install packages
+        run: pip install -r requirements.txt
+
+      - name: Run sync
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        # sync.py exits with code 1 on a failed or partial run, so the job turns red
+        # and GitHub emails the repository owner.
+        run: python ingest/sync.py
