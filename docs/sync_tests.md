@@ -75,7 +75,35 @@ behaviour, `failed` with nothing written, then `success` with 0 / 0.
 The reference queries in `evals/golden_questions.csv` are run with `python evals/check_reference.py`, which
 connects as `app_reader`.
 
-**Baseline run:** _to do after `APP_DATABASE_URL` is set_ (paste output here).
+**Baseline run (2026-11-22, 21:45 UTC, after sync run 8):** all 14 reference queries run as `app_reader` and
+return rows; the 5 should_decline questions have no SQL. Saved as `evals/reference_runs/2026-11-22_2145.json`.
+
+```
+$ python evals/check_reference.py
+Connected as app_reader, 2026-11-22 21:45 UTC
+
+Q01  ok    15 rows   player=Romulo, team=Leipzig, goals=5, penalties=0
+Q02  ok    18 rows   team=Leipzig, played=4, points=12, goals_for=16, goals_against=3
+Q03  ok     9 rows   matchday=11, kickoff_german_time=2026-11-27 20:30:00, home_team=Bremen, home_position=6, h
+Q04  ok    18 rows   player=A. Caci, matchday=5, match=Mainz - Leverkusen, minute=42, is_penalty=False
+Q05  ok     6 rows   position=18, team=Gladbach, matches_played=10, won=1, draw=1, lost=8, goals=12:26, points=
+Q06  ok     8 rows   minute_block=01-15, goals=153, percent_of_all_goals=11.8
+Q07  ok     1 rows   matchday=11, kickoff_german_time=2026-11-27 20:30:00, home_team=Bremen, away_team=Gladbach
+Q08  ok     2 rows   season=2025, goals=13, matches_with_goal=9
+Q09  ok     5 rows   matchday=10, match=Bayern - Köln, bayern_goals=1
+Q10  skip  (should_decline: no reference SQL)
+Q11  skip  (should_decline: no reference SQL)
+Q12  ok     5 rows   position=1, team=Dortmund, matches_played=10, points=24, goals=17:7
+Q13  ok     3 rows   season=2025, matchday=7, match=Bayern - Dortmund, result=2:1
+Q14  ok     7 rows   player=N. Füllkrug, team=Bremen, penalties=3
+Q15  ok     1 rows   last_successful_sync=2026-11-22 21:41:39.447416+00:00, age=0:03:53.224494
+Q16  skip  (should_decline: no reference SQL)
+Q17  skip  (should_decline: no reference SQL)
+Q18  skip  (should_decline: no reference SQL)
+Q19  ok     1 rows   finished_matches=90, pct_home_wins=50.0, pct_draws=21.1, pct_away_wins=28.9
+
+14 of 14 reference queries OK; saved to evals/reference_runs/2026-11-22_2145.json
+```
 
 **Second run, after at least two more scheduled syncs:** _to do_ (run with `--compare`, paste output, list
 which answers changed).

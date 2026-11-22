@@ -125,4 +125,28 @@ match always has a final score and half-time goals are never more than full-time
 | `postgres` (owner, `DATABASE_URL`) | only `ingest/load.py` and later the sync | create tables, insert, update |
 | `app_reader` (`APP_DATABASE_URL`, later) | website, chatbot, golden-question checker | read only (`select`) |
 
-The Supabase Data API is turned off: the project connects to the database directly.
+The roles are created by [`db/roles.sql`](../db/roles.sql). `app_reader` gets `usage` on the schema and
+`select` on `teams, team_seasons, players, matches, goals, standings, sync_runs`, nothing else. Its password
+was set in the Supabase SQL editor only; it is not in any file in this repository.
+
+### Proof (2026-11-22, 21:45 UTC)
+
+```
+$ python scripts/check_db.py --app
+[ok] Connected using APP_DATABASE_URL
+     Database user: app_reader
+     Server: PostgreSQL 17.11 on x86_64-pc-linux-gnu
+
+$ python scripts/prove_app_reader.py
+> select current_user, count(*) as matches from matches
+  OK: [('app_reader', 612)]
+> delete from matches where match_id = 83237
+  ERROR: permission denied for table matches
+> insert into sync_runs (started_at, finished_at, status, trigger) values (now(), now(), 'success', 'manual')
+  ERROR: permission denied for table sync_runs
+```
+
+SELECT works, DELETE and INSERT fail with `permission denied`.
+
+The Supabase Data API (automatic REST API) is turned off (Integrations → Data API → Enable Data API: off),
+so the tables can only be reached through these database roles.
